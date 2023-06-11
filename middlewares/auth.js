@@ -17,7 +17,7 @@ exports.requireSingin = (req, res, next) => {
 
 exports.isAdmin = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user._id); // From where this req came from?
+    const user = await User.findById(req.user._id);
     if (user.role !== 1) {
       return res.status(401).send({ message: "Unauthorized" });
     } else {

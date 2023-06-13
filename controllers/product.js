@@ -85,31 +85,31 @@ exports.read = async (req, res) => {
   }
 };
 
-// exports.photo = async (req, res) => {
-//   try {
-//     const product = await Product.findById(req.params.productId).select(
-//       "photo"
-//     );
-//     if (product.photo.data) {
-//       res.set("Content-Type", product.photo.contentType);
-//       res.set("Cross-Origin-Resource-Policy", "cross-origin");
-//       return res.send(product.photo.data);
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+exports.photo = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId).select(
+      "photo"
+    );
+    if (product.photo.data) {
+      res.set("Content-Type", product.photo.contentType);
+      res.set("Cross-Origin-Resource-Policy", "cross-origin");
+      return res.send(product.photo.data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-// exports.remove = async (req, res) => {
-//   try {
-//     const product = await Product.findByIdAndDelete(
-//       req.params.productId
-//     ).select("-photo");
-//     res.json(product);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+exports.remove = async (req, res) => {
+  try {
+    const product = await Product.findByIdAndDelete(
+      req.params.productId
+    ).select("-photo");
+    res.json(product);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // exports.update = async (req, res) => {
 //   try {

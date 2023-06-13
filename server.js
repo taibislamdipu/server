@@ -5,6 +5,7 @@ const app = express();
 const helmet = require("helmet");
 const mongoose = require("mongoose");
 require("dotenv").config();
+require("colors");
 const morgan = require("morgan");
 const cors = require("cors");
 

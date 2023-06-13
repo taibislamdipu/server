@@ -59,19 +59,19 @@ exports.create = async (req, res) => {
   }
 };
 
-// exports.list = async (req, res) => {
-//   try {
-//     const products = await Product.find({})
-//       .populate("category")
-//       .select("-photo")
-//       .limit(12)
-//       .sort({ createdAt: -1 });
+exports.list = async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .populate("category")
+      .select("-photo -name -description")
+      .limit(12)
+      .sort({ createdAt: -1 });
 
-//     res.json(products);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // exports.read = async (req, res) => {
 //   try {

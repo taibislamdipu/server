@@ -73,17 +73,17 @@ exports.list = async (req, res) => {
   }
 };
 
-// exports.read = async (req, res) => {
-//   try {
-//     const product = await Product.findOne({ slug: req.params.slug })
-//       .select("-photo")
-//       .populate("category");
+exports.read = async (req, res) => {
+  try {
+    const product = await Product.findOne({ slug: req.params.slug })
+      .select("-photo")
+      .populate("category");
 
-//     res.json(product);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    res.json(product);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // exports.photo = async (req, res) => {
 //   try {

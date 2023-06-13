@@ -111,56 +111,56 @@ exports.remove = async (req, res) => {
   }
 };
 
-// exports.update = async (req, res) => {
-//   try {
-//     // console.log(req.fields);
-//     // console.log(req.files);
-//     const { name, description, price, category, quantity, shipping } =
-//       req.fields;
-//     const { photo } = req.files;
-//     // console.log(req.params.productId)
+exports.update = async (req, res) => {
+  try {
+    // console.log(req.fields);
+    // console.log(req.files);
+    const { name, description, price, category, quantity, shipping } =
+      req.fields;
+    const { photo } = req.files;
+    // console.log(req.params.productId)
 
-//     // option1
-//     // validation
-//     switch (true) {
-//       case !name?.trim():
-//         return res.json({ error: "Name is required" });
-//       case !description?.trim():
-//         return res.json({ error: "Description is required" });
-//       case !price?.trim():
-//         return res.json({ error: "Price is required" });
-//       case !category?.trim():
-//         return res.json({ error: "Category is required" });
-//       case !quantity?.trim():
-//         return res.json({ error: "Quantity is required" });
-//       case !shipping?.trim():
-//         return res.json({ error: "Shipping is required" });
-//       case photo && photo.size > 1000000:
-//         return res.json({ error: "Image should be less than 1mb in size" });
-//     }
+    // option1
+    // validation
+    switch (true) {
+      case !name?.trim():
+        return res.json({ error: "Name is required" });
+      case !description?.trim():
+        return res.json({ error: "Description is required" });
+      case !price?.trim():
+        return res.json({ error: "Price is required" });
+      case !category?.trim():
+        return res.json({ error: "Category is required" });
+      case !quantity?.trim():
+        return res.json({ error: "Quantity is required" });
+      case !shipping?.trim():
+        return res.json({ error: "Shipping is required" });
+      case photo && photo.size > 1000000:
+        return res.json({ error: "Image should be less than 1mb in size" });
+    }
 
-//     // update product
-//     const product = await Product.findByIdAndUpdate(
-//       req.params.productId,
-//       {
-//         ...req.fields,
-//         slug: slugify(name),
-//       },
-//       { new: true }
-//     );
+    // update product
+    const product = await Product.findByIdAndUpdate(
+      req.params.productId,
+      {
+        ...req.fields,
+        slug: slugify(name),
+      },
+      { new: true }
+    );
 
-//     if (photo) {
-//       product.photo.data = fs.readFileSync(photo.path);
-//       product.photo.contentType = photo.type;
-//     }
+    if (photo) {
+      product.photo.data = fs.readFileSync(photo.path);
+      product.photo.contentType = photo.type;
+    }
 
-//     await product.save();
-//     res.json(product);
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(400).json(err.message);
-//   }
-// };
+    await product.save();
+    res.json(product);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json(err.message);
+  }
+};
 
 // exports.filteredProducts = async (req, res) => {
 //   try {

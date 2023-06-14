@@ -196,38 +196,38 @@ exports.productsCount = async (req, res) => {
   }
 };
 
-// exports.listProducts = async (req, res) => {
-//   try {
-//     const perPage = 2;
-//     const page = req.params.page ? req.params.page : 1;
+exports.listProducts = async (req, res) => {
+  try {
+    const perPage = 2;
+    const page = req.params.page ? req.params.page : 1;
 
-//     const products = await Product.find({})
-//       .select("-photo")
-//       .skip((page - 1) * perPage)
-//       .limit(perPage)
-//       .sort({ createdAt: -1 });
+    const products = await Product.find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
 
-//     res.json(products);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-// exports.productsSearch = async (req, res) => {
-//   try {
-//     const { keyword } = req.params;
-//     const results = await Product.find({
-//       $or: [
-//         { name: { $regex: keyword, $options: "i" } },
-//         { description: { $regex: keyword, $options: "i" } },
-//       ],
-//     }).select("-photo");
+exports.productsSearch = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await Product.find({
+      $or: [
+        { name: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } },
+      ],
+    }).select("-photo");
 
-//     res.json(results);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    res.json(results);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // exports.relatedProducts = async (req, res) => {
 //   try {

@@ -14,6 +14,8 @@ const {
   update,
   filteredProducts,
   productsCount,
+  listProducts,
+  productsSearch,
 } = require("../controllers/product");
 
 router.post("/product", requireSingin, isAdmin, formidable(), create); // create a product
@@ -24,8 +26,8 @@ router.delete("/product/:productId", requireSingin, isAdmin, remove);
 router.put("/product/:productId", requireSingin, isAdmin, formidable(), update);
 router.post("/filtered-products", filteredProducts);
 router.get("/products-count", productsCount);
-// router.get("/list-products/:page", listProducts);
-// router.get("/products/search/:keyword", productsSearch);
+router.get("/list-products/:page", listProducts);
+router.get("/products/search/:keyword", productsSearch);
 // router.get("/related-products/:productId/:categoryId", relatedProducts);// get single product by slug
 
 module.exports = router;

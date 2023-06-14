@@ -187,14 +187,14 @@ exports.filteredProducts = async (req, res) => {
   }
 };
 
-// exports.productsCount = async (req, res) => {
-//   try {
-//     const total = await Product.find({}).estimatedDocumentCount();
-//     res.json(total);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+exports.productsCount = async (req, res) => {
+  try {
+    const total = await Product.find({}).estimatedDocumentCount();
+    res.json(total);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // exports.listProducts = async (req, res) => {
 //   try {

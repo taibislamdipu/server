@@ -13,6 +13,7 @@ const {
   remove,
   update,
   filteredProducts,
+  productsCount,
 } = require("../controllers/product");
 
 router.post("/product", requireSingin, isAdmin, formidable(), create); // create a product
@@ -22,7 +23,7 @@ router.get("/product/photo/:productId", photo);
 router.delete("/product/:productId", requireSingin, isAdmin, remove);
 router.put("/product/:productId", requireSingin, isAdmin, formidable(), update);
 router.post("/filtered-products", filteredProducts);
-// router.get("/products-count", productsCount);
+router.get("/products-count", productsCount);
 // router.get("/list-products/:page", listProducts);
 // router.get("/products/search/:keyword", productsSearch);
 // router.get("/related-products/:productId/:categoryId", relatedProducts);// get single product by slug

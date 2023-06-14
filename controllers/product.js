@@ -229,23 +229,23 @@ exports.productsSearch = async (req, res) => {
   }
 };
 
-// exports.relatedProducts = async (req, res) => {
-//   try {
-//     const { productId, categoryId } = req.params;
+exports.relatedProducts = async (req, res) => {
+  try {
+    const { productId, categoryId } = req.params;
 
-//     const related = await Product.find({
-//       category: categoryId,
-//       _id: { $ne: productId },
-//     })
-//       .select("-photo")
-//       .populate("category")
-//       .limit(3);
+    const related = await Product.find({
+      category: categoryId,
+      _id: { $ne: productId },
+    })
+      .select("-photo")
+      .populate("category")
+      .limit(3);
 
-//     res.json(related);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    res.json(related);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // exports.getToken = async (req, res) => {
 //   try {

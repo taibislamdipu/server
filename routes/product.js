@@ -16,6 +16,7 @@ const {
   productsCount,
   listProducts,
   productsSearch,
+  relatedProducts,
 } = require("../controllers/product");
 
 router.post("/product", requireSingin, isAdmin, formidable(), create); // create a product
@@ -28,6 +29,6 @@ router.post("/filtered-products", filteredProducts);
 router.get("/products-count", productsCount);
 router.get("/list-products/:page", listProducts);
 router.get("/products/search/:keyword", productsSearch);
-// router.get("/related-products/:productId/:categoryId", relatedProducts);// get single product by slug
+router.get("/related-products/:productId/:categoryId", relatedProducts);
 
 module.exports = router;

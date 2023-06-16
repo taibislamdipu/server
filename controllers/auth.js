@@ -1,6 +1,7 @@
 const User = require("../models/user.js");
 const { hashPassword, comparePassword } = require("../helpers/auth.js");
 const jwt = require("jsonwebtoken");
+const Order = require("../models/order.js");
 
 exports.register = async (req, res) => {
   try {
@@ -140,5 +141,28 @@ exports.updateProfile = async (req, res) => {
     res.json({ status: "success", updated });
   } catch (error) {
     return res.json({ message: error });
+  }
+};
+
+exports.getOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ buyer: req.user._id })
+      .populate("products", "-photo")
+      .populate("buyer", "name");
+    res.json(orders);
+  } catch (error) {
+    res.json({ status: "error", message: error });
+  }
+};
+
+exports.allOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    res.json({ status: "error", message: error });
   }
 };

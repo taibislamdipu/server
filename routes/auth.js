@@ -7,6 +7,8 @@ const {
   login,
   secret,
   updateProfile,
+  getOrders,
+  allOrders,
 } = require("../controllers/auth.js");
 const { requireSingin, isAdmin } = require("../middlewares/auth.js");
 
@@ -26,5 +28,7 @@ router.get("/secret", requireSingin, isAdmin, secret, (req, res) => {
 });
 
 router.put("/profile", requireSingin, updateProfile);
+router.get("/orders", requireSingin, getOrders);
+router.get("/all-orders", requireSingin, isAdmin, allOrders);
 
 module.exports = router;

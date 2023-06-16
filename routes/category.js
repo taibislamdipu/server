@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // middleware
-const { requireSingin, isAdmin } = require("../middlewares/auth");
+const { requireSignIn, isAdmin } = require("../middlewares/auth");
 const {
   create,
   update,
@@ -11,9 +11,9 @@ const {
   read,
 } = require("../controllers/category");
 
-router.post("/category", requireSingin, isAdmin, create);
-router.put("/category/:categoryId", requireSingin, isAdmin, update);
-router.delete("/category/:categoryId", requireSingin, isAdmin, remove);
+router.post("/category", requireSignIn, isAdmin, create);
+router.put("/category/:categoryId", requireSignIn, isAdmin, update);
+router.delete("/category/:categoryId", requireSignIn, isAdmin, remove);
 router.get("/category", list);
 router.get("/category/:slug", read);
 

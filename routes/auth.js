@@ -10,25 +10,25 @@ const {
   getOrders,
   allOrders,
 } = require("../controllers/auth.js");
-const { requireSingin, isAdmin } = require("../middlewares/auth.js");
+const { isAdmin, requireSignIn } = require("../middlewares/auth.js");
 
 router.post("/register", register);
 router.post("/login", login);
 
-router.get("/auth-check", requireSingin, (req, res) => {
+router.get("/auth-check", requireSignIn, (req, res) => {
   res.json({ ok: true });
 });
-router.get("/is-admin", requireSingin, isAdmin, (req, res) => {
+router.get("/is-admin", requireSignIn, isAdmin, (req, res) => {
   res.json({ ok: true });
 });
 
 // testing
-router.get("/secret", requireSingin, isAdmin, secret, (req, res) => {
+router.get("/secret", requireSignIn, isAdmin, secret, (req, res) => {
   res.json({ ok: true });
 });
 
-router.put("/profile", requireSingin, updateProfile);
-router.get("/orders", requireSingin, getOrders);
-router.get("/all-orders", requireSingin, isAdmin, allOrders);
+router.put("/profile", requireSignIn, updateProfile);
+router.get("/orders", requireSignIn, getOrders);
+router.get("/all-orders", requireSignIn, isAdmin, allOrders);
 
 module.exports = router;
